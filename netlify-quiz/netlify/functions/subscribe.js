@@ -11,10 +11,6 @@ exports.handler = async function(event, context) {
 
   try {
     const { email, first_name, archetype } = JSON.parse(event.body);
-    
-    console.log('Attempting:', email, first_name, archetype);
-    console.log('PUB_ID:', process.env.BEEHIIV_PUB_ID);
-    console.log('API_KEY exists:', !!process.env.BEEHIIV_API_KEY);
 
     const url = `https://api.beehiiv.com/v2/publications/${process.env.BEEHIIV_PUB_ID}/subscriptions`;
 
@@ -29,14 +25,15 @@ exports.handler = async function(event, context) {
         first_name,
         reactivate_existing: true,
         send_welcome_email: false,
-        custom_fields: [{ name: 'archetype', value: archetype }]
+        tags: ['Archetype Quiz'],
+        custom_fields: [{ name: 'Good Girl Archetype', value: archetype }]
       })
     });
 
     const data = await response.json();
     console.log('Beehiiv status:', response.status);
     console.log('Beehiiv response:', JSON.stringify(data));
-    
+
     return { statusCode: 200, headers, body: JSON.stringify({ success: true, data }) };
   } catch (err) {
     console.log('Error:', err.message);
