@@ -1,4 +1,4 @@
 [build]
   base = "netlify-quiz"
-  publish = "netlify-quiz"
-  functions = "netlify-quiz/netlify/functions"
+  publish = "."
+  functions = "netlify/functions"
