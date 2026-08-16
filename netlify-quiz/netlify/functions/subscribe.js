@@ -25,7 +25,7 @@ exports.handler = async function(event, context) {
         first_name,
         reactivate_existing: true,
         send_welcome_email: false,
-        tags: ['Archetype Quiz'],
+        tags: ['good girl quiz'],
         custom_fields: [{ name: 'Good Girl Archetype', value: archetype }]
       })
     });
